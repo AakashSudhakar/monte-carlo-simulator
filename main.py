@@ -36,7 +36,7 @@ def simple_bettor(funds, initial_wager, wager_count):
     return value
 
 def main():
-    (funds, initial_wager, wager_count) = (10000, 100, 100)
+    (funds, initial_wager, wager_count) = (1000000, 50000, 8)
     final_funds = simple_bettor(funds=funds, initial_wager=initial_wager, wager_count=wager_count)
     print("\nSTARTING FUNDS:  ${}\nFINAL FUNDS:  ${}".format(funds, final_funds))
     if final_funds > funds:
