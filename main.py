@@ -12,13 +12,10 @@ import math, random
 def roll_dice():
     roll = random.randint(1, 100)
     if roll == 100:
-        # print("\nRoll is {}.\n\nYOU LOSE.\n".format(roll))
         return False
     elif roll <= 50:
-        # print("\nRoll is {}, which is inclusively between 1 and 50.\n\nYOU LOSE.\n".format(roll))
         return False
-    else:
-        # print("\nRoll is {}, which is inclusively between 51 and 99.\n\nYOU WIN!\n".format(roll))
+    elif 100 > roll >= 50:
         return True
 
 def simple_bettor(funds, initial_wager, wager_count):
@@ -32,19 +29,15 @@ def simple_bettor(funds, initial_wager, wager_count):
         else:
             value -= wager
         current_wager += 1
-        # print("\nCURRENT FUNDS: ${}\n".format(value))
-    return value
+    if value <= 0:
+        value = "BROKE"
+    print("\nCURRENT FUNDS: ${}\n".format(value))
 
 def main():
-    (funds, initial_wager, wager_count) = (1000000, 50000, 8)
-    final_funds = simple_bettor(funds=funds, initial_wager=initial_wager, wager_count=wager_count)
-    print("\nSTARTING FUNDS:  ${}\nFINAL FUNDS:  ${}".format(funds, final_funds))
-    if final_funds > funds:
-        print("\nAfter {} wagers, you won ${}.\n\nCONGRATULATIONS!\n".format(wager_count, final_funds - funds))
-    elif final_funds == funds:
-        print("\nAfter {} wagers, you didn't win or lose any money.\n\nINTERESTING...\n".format(wager_count))
-    else:
-        print("\nAfter {} wagers, you lost ${}.\n\nEPIC FAIL!\n".format(wager_count, funds - final_funds))
+    (funds, initial_wager, wager_count), x = (10000, 100, 50), 0
+    while x < 100:
+        simple_bettor(funds=funds, initial_wager=initial_wager, wager_count=wager_count)
+        x += 1
 
 if __name__ == "__main__":
     main()
